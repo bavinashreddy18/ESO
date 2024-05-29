@@ -1,67 +1,42 @@
+---
 apiVersion: v1
-kind: Namespace
+kind: ServiceAccount
 metadata:
-  name: external-secrets
-  
-apiVersion: apps/v1
-kind: Deployment
+  annotations:
+    azure.workload.identity/client-id: ${USER_ASSIGNED_IDENTITY_CLIENT_ID}
+    azure.workload.identity/tenant-id: <tenant-id>
+  name: external-secrets-test
+  namespace: playground
+---
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
 metadata:
-  name: external-secrets-operator
-  namespace: external-secrets
+  name: azure-store
+  namespace: playground
 spec:
-  selector:
-    matchLabels:
-      name: external-secrets-operator
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        name: external-secrets-operator
-    spec:
-      serviceAccountName: external-secrets-operator
-      containers:
-        - name: external-secrets-operator
-          image: quay.io/external-secrets/kubernetes-external-secrets:v0.7.4
-          command:
-            - external-secrets-operator
-          args:
-            - --zap-level=debug
-            - --zap-encoding=json
-            - --zap-log-encoder=console
-            - --zap-development=true
-            - --zap-stacktrace-level=warn
-            - --zap-locales-dir=locales
-            - --zap-locales=zh,zh-CN,fr,pt-BR,en-US,ja,de,es-ES,ru,nl
-            - --zap-logger=console
-          env:
-            - name: NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
+  provider:
+    azurekv:
+      authType: WorkloadIdentity
+      vaultUrl: "https://keyvault-test.vault.azure.net"
+      serviceAccountRef:
+        name: external-secrets-test
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
 metadata:
-  name: secretstores.external-secrets.io
+  name: credentials
+  namespace: playground
 spec:
-  group: external-secrets.io
-  names:
+  refreshInterval: 1h
+  secretStoreRef:
     kind: SecretStore
-    plural: secretstores
-    singular: secretstore
-  scope: Namespaced
-  versions:
-    - name: v1alpha1
-      served: true
-      storage: true
-  additionalPrinterColumns:
-    - name: Target
-      type: string
-      description: The name of the secret being created
-      JSONPath: .spec.target.name
-    - name: Provider
-      type: string
-      description: The name of the provider plugin
-      JSONPath: .spec.provider.name
+    name: azure-store
 
-
+  target:
+    name: credentials
+    creationPolicy: Owner
+  data:
+  # explicit type and name of secret in the Azure KV
+  - secretKey: creds
+    remoteRef:
+      key: secret/credential
