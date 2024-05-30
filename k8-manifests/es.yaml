@@ -23,20 +23,40 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
+  labels:
+    argocd.argoproj.io/instance: eso
   name: demo-secret
   namespace: argocd
 spec:
-  refreshInterval: "5m"
+  data:
+    - remoteRef:
+        key: secrets/avi
+      secretKey: avi
+  refreshInterval: 5m
   secretStoreRef:
     kind: ClusterSecretStore
-    name: azure-store   
-    
+    name: azure-store
   target:
-    name: demo-secret
     creationPolicy: Owner
-  data:
-  - secretKey: avi
-    remoteRef:
-      key: secrets/avi
+    name: demo-secret
+
+# apiVersion: external-secrets.io/v1beta1
+# kind: ExternalSecret
+# metadata:
+#   name: demo-secret
+#   namespace: argocd
+# spec:
+#   refreshInterval: "5m"
+#   secretStoreRef:
+#     kind: ClusterSecretStore
+#     name: azure-store   
+    
+#   target:
+#     name: demo-secret
+#     creationPolicy: Owner
+#   data:
+#   - secretKey: avi
+#     remoteRef:
+#       key: secrets/avi
   
       
