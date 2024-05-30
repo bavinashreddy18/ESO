@@ -33,6 +33,7 @@ spec:
   target:
     name: demo-secret
   data:
+  - secretKey: Cred
     remoteRef:
       key: Cred
   
