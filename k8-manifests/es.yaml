@@ -38,4 +38,5 @@ spec:
   # explicit type and name of secret in the Azure KV
   - secretKey: Cred
     remoteRef:
-      key: secret/credential
+      key: Cred
+      
