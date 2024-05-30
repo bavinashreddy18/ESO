@@ -4,7 +4,7 @@ kind: ServiceAccount
 metadata:
   annotations:
     azure.workload.identity/client-id: "8b9b9392-d5e4-47b0-8c15-d84c93b3c9c1"
-    azure.workload.identity/tenant-id: "82913d90-8716-4025-a8e8-4f8dfa42b719"
+    azure.workload.identity/tenant-id:  82913d90-8716-4025-a8e8-4f8dfa42b719
   name: external-secrets-test
   namespace: argocd
 ---
