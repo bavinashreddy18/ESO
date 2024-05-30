@@ -28,8 +28,9 @@ metadata:
 spec:
   refreshInterval: "30m"
   secretStoreRef:
-    name: azure-store
-    kind: ClusterSecretStore  
+    kind: ClusterSecretStore
+    name: azure-store   
+    
   target:
     name: demo-secret
     creationPolicy: Owner
