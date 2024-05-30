@@ -32,9 +32,10 @@ spec:
     name: azure-store
   target:
     name: demo-secret
+    creationPolicy: Owner
   data:
   - secretKey: Cred
     remoteRef:
-      key: Cred
+      key: secret/Cred
   
       
