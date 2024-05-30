@@ -35,8 +35,8 @@ spec:
     name: credentials
     creationPolicy: Owner
   data:
-  # explicit type and name of secret in the Azure KV
-  - secretKey: Cred
+  - secretKey: token
     remoteRef:
       key: Cred
+      property: tokenA
       
