@@ -30,8 +30,8 @@ metadata:
 spec:
   data:
     - remoteRef:
-        key: secrets/avi
-      secretKey: avi
+        key: avi
+      secretKey: its-avi-me
   refreshInterval: 5m
   secretStoreRef:
     kind: ClusterSecretStore
