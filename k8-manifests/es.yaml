@@ -9,7 +9,7 @@ metadata:
   namespace: argocd
 ---
 apiVersion: external-secrets.io/v1beta1
-kind: SecretStore
+kind: ClusterSecretStore
 metadata:
   name: azure-store
   namespace: argocd
