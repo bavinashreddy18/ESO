@@ -16,7 +16,6 @@ metadata:
 spec:
   provider:
     azurekv:
-      authType: WorkloadIdentity
       vaultUrl: "https://avi-key-vault.vault.azure.net/"
       serviceAccountRef:
         name: external-secrets-test
