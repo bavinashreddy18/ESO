@@ -38,5 +38,5 @@ spec:
   - secretKey: token
     remoteRef:
       key: Cred
-      property: tokenA
+  
       
