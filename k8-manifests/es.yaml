@@ -26,7 +26,7 @@ metadata:
   name: demo-secret
   namespace: argocd
 spec:
-  refreshInterval: "30m"
+  refreshInterval: "5m"
   secretStoreRef:
     kind: ClusterSecretStore
     name: azure-store   
@@ -37,6 +37,6 @@ spec:
   data:
   - secretKey: avi
     remoteRef:
-      key: avi
+      key: secret/avi
   
       
