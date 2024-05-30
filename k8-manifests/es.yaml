@@ -28,12 +28,10 @@ metadata:
 spec:
   refreshInterval: "30m"
   secretStoreRef:
-    kind: ClusterSecretStore
     name: azure-store
-    
+    kind: ClusterSecretStore  
   target:
     name: demo-secret
-    creationPolicy: Owner
   data:
   - secretKey: Cred
     remoteRef:
