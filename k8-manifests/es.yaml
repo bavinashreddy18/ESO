@@ -23,19 +23,16 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: credentials
+  name: demo-secret
   namespace: argocd
 spec:
-  refreshInterval: 1h
+  refreshInterval: "30m"
   secretStoreRef:
     kind: SecretStore
     name: azure-store
-
   target:
-    name: credentials
-    creationPolicy: Owner
+    name: demo-secret
   data:
-  - secretKey: token
     remoteRef:
       key: Cred
   
