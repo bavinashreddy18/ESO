@@ -35,8 +35,8 @@ spec:
     name: demo-secret
     creationPolicy: Owner
   data:
-  - secretKey: token
+  - secretKey: avi
     remoteRef:
-      key: secret/avi
+      key: avi
   
       
