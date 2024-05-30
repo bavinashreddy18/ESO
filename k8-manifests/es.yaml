@@ -28,7 +28,7 @@ metadata:
 spec:
   refreshInterval: "30m"
   secretStoreRef:
-    kind: SecretStore
+    kind: ClusterSecretStore
     name: azure-store
     
   target:
