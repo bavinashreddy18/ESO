@@ -37,6 +37,6 @@ spec:
   data:
   - secretKey: avi
     remoteRef:
-      key: secret/avi
+      key: avi
   
       
