@@ -30,6 +30,7 @@ spec:
   secretStoreRef:
     kind: SecretStore
     name: azure-store
+    
   target:
     name: demo-secret
     creationPolicy: Owner
