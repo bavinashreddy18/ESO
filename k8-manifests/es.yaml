@@ -17,6 +17,10 @@ spec:
   provider:
     azurekv:
       vaultUrl: "https://avi-key-vault.vault.azure.net/"
+      auth:
+        workloadIdentity:
+          clusterLocation: East US 2 
+          clusterName: aks-avi-cluster
       serviceAccountRef:
         name: external-secrets-test
 ---
