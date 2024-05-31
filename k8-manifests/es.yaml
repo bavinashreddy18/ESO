@@ -9,7 +9,7 @@ metadata:
   namespace: argocd
 ---
 apiVersion: external-secrets.io/v1beta1
-kind: ClusterSecretStore
+kind: SecretProviderClass
 metadata:
   name: azure-store
   namespace: argocd
@@ -17,7 +17,6 @@ spec:
   provider:
     azurekv:
       vaultUrl: "https://avi-key-vault.vault.azure.net/"
-      azure.workload.identity/tenant-id: "82913d90-8716-4025-a8e8-4f8dfa42b719"
       serviceAccountRef:
         name: external-secrets-test
 ---
@@ -31,7 +30,7 @@ metadata:
 spec:
   refreshInterval: "5m"
   secretStoreRef:
-    kind: ClusterSecretStore
+    kind: SecretProviderClass
     name: azure-store   
     
   target:
