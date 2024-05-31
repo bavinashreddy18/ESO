@@ -17,6 +17,7 @@ spec:
   provider:
     azurekv:
       vaultUrl: "https://avi-key-vault.vault.azure.net/"
+      azure.workload.identity/tenant-id: "82913d90-8716-4025-a8e8-4f8dfa42b719"
       serviceAccountRef:
         name: external-secrets-test
 ---
