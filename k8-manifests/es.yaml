@@ -20,6 +20,24 @@ spec:
       serviceAccountRef:
         name: external-secrets-test
 ---
+# apiVersion: external-secrets.io/v1beta1
+# kind: ExternalSecret
+# metadata:
+#   name: demo-secret
+#   namespace: default
+# spec:
+#   refreshInterval: "5m"
+#   secretStoreRef:
+#     kind: ClusterSecretStore
+#     name: azure-store   
+    
+#   target:
+#     name: demo-secret
+#     creationPolicy: Owner
+#   data:
+#   - secretKey: avi
+#     remoteRef:
+#       key: avi
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
@@ -29,15 +47,18 @@ spec:
   refreshInterval: "5m"
   secretStoreRef:
     kind: ClusterSecretStore
-    name: azure-store   
-    
+    name: azure-store
   target:
     name: demo-secret
     creationPolicy: Owner
-  data:
-  - secretKey: avi
-    remoteRef:
-      key: avi
+  template:
+    metadata:
+      annotations:
+        example.com/secret-type: "env"
+    data:
+      - key: avi
+        name: AVI_SECRET
+
 
   
   
