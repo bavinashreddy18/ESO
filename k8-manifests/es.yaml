@@ -9,7 +9,7 @@ metadata:
   namespace: argocd
 ---
 apiVersion: external-secrets.io/v1beta1
-kind: SecretProviderClass
+kind: ClusterSecretStore
 metadata:
   name: azure-store
   namespace: argocd
@@ -30,7 +30,7 @@ metadata:
 spec:
   refreshInterval: "5m"
   secretStoreRef:
-    kind: SecretProviderClass
+    kind: ClusterSecretStore
     name: azure-store   
     
   target:
