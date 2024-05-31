@@ -24,7 +24,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: demo-secret
-  namespace: argocd
+  namespace: default
 spec:
   refreshInterval: "5m"
   secretStoreRef:
